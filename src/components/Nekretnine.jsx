@@ -1,6 +1,6 @@
 import properties from "../data/properties";
 import React, {useState} from "react";
-
+import { parsePrice } from "../data/utils.js";
 
 
 
@@ -8,17 +8,33 @@ const Nekretnine = () => {
     const [filters, setFilters] = useState({
       minPrice: "",
       maxPrice: "",
-      description: "",
+      
     });
+
+    //  Price to numbers
+
+    const parsedProperties = properties.map((property) => ({
+      ...property,
+      price: parsePrice(property.price),
+    }))
+
+
   
-    const filteredProperties = properties.filter((property) => {
-      const minPriceMatch = !filters.minPrice || property.price >= parseInt(filters.minPrice);
-      const maxPriceMatch = !filters.maxPrice || property.price <= parseInt(filters.maxPrice);
+    const filteredProperties = parsedProperties.filter((property) => {
+      const minPrice = filters.minPrice !== ""? parseFloat(filters.minPrice) : null;
+      const maxPrice = filters.maxPrice !== ""? parseFloat(filters.maxPrice) : null;
   
-      return minPriceMatch && maxPriceMatch;
+       
+
+      const minPriceMatch = minPrice === null || property.price >= minPrice;
+      const maxPriceMatch = maxPrice === null || property.price <= maxPrice;
+  
+    return minPriceMatch && maxPriceMatch;
     });
-  
-    return (
+      
+      
+      
+      return (
       <>
         <div className="nek-pag">
           <h1 className="nek-title">Nekretnine</h1>
@@ -27,9 +43,9 @@ const Nekretnine = () => {
               <div key={property.id} className="property-card">
                 <h3>{property.name}</h3>
                 <img src={property.img} alt={property.name} width="300" height="200"/>
-                <p>Lokacija: {property.location}</p>
-                <p>Cijena: {property.price}</p>
-                <p>Opis: {property.description}</p>
+                <p>Location: {property.location}</p>
+                <p>Price: {property.price}</p>
+                <p>Description: {property.description}</p>
               </div>
             ))}
           </div>
