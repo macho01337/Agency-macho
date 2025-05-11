@@ -44,7 +44,7 @@ const Nekretnine = () => {
                 <h3>{property.name}</h3>
                 <img src={property.img} alt={property.name} width="300" height="200"/>
                 <p>Location: {property.location}</p>
-                <p>Price: {property.price}</p>
+                <p>Price: {property.price} $</p>
                 <p>Description: {property.description}</p>
               </div>
             ))}

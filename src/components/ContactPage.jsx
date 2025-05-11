@@ -51,7 +51,7 @@ const ContactPage = () => {
     }
 
     // Ako su sva polja popunjena
-    alert(`Poruka od ${formData.name} (${formData.email}): ${poruka}`);
+    alert(`Poslali ste upit: Vas odgovor ce biti pregledan u najkracem roku. `);
     // opcionalno resetovanje
     setFormData({
       name: '',

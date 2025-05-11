@@ -5,6 +5,7 @@ import HomePage from './components/HomePage'
 import AboutPage from './components/AboutPage'
 import ContactPage from './components/ContactPage'
 import Nekretnine from './components/Nekretnine'
+import Footer from './components/Footer'
 import './App.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
+          <Footer />
          </div>
         </div>
     </Router>
